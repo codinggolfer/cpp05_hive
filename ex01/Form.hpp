@@ -6,13 +6,13 @@
 /*   By: eagbomei <eagbomei@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:01:05 by eagbomei          #+#    #+#             */
-/*   Updated: 2024/11/12 12:51:06 by eagbomei         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:54:55 by eagbomei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Bureaucrat.cpp"
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -20,9 +20,9 @@ class Form
 {
 private:
 	const std::string _name;
-	bool  _isSigned;
-	const int _gradeToSign;
 	const int _gradeToExec;
+	const int _gradeToSign;
+	bool  _isSigned;
 public:
 	Form();
 	Form(std::string, int, int);
@@ -35,7 +35,6 @@ public:
 	std::string getName();
 
 	void beSigned(Bureaucrat&);
-	void singForm();
 	void checkGrades(int value);
 
 	class GradeTooHighException : public std::exception {

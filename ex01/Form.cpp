@@ -6,7 +6,7 @@
 /*   By: eagbomei <eagbomei@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:09:04 by eagbomei          #+#    #+#             */
-/*   Updated: 2024/11/12 13:04:50 by eagbomei         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:59:18 by eagbomei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ Form::Form(std::string name, int exec, int sign) : _name(name), _gradeToExec(exe
 	checkGrades(sign);
 }
 
+Form::Form(Form& copy) : _name(copy._name), _gradeToExec(copy._gradeToExec), _gradeToSign(copy._gradeToSign), _isSigned(copy._isSigned) {
+	checkGrades(this->_gradeToExec);
+	checkGrades(this->_gradeToSign);
+}
+
+Form& Form::operator=(Form& other){
+	if (this != &other)
+		_isSigned = other._isSigned;
+	return *this;
+}
+
 void Form::beSigned(Bureaucrat& byro)
 {
 	this->_isSigned = this->_gradeToSign >= byro.getGrade() ? true : false;
@@ -28,19 +39,6 @@ void Form::beSigned(Bureaucrat& byro)
 	// else 
    	// 	throw GradeTooHighException();
 }
-
-void Form::singForm() {
-	
-}
-
-
-
-
-
-
-
-
-
 
 const char* Form::GradeTooHighException::what() const noexcept {
 	return ("Grade to sign too high / Form can't be executed");
@@ -58,7 +56,10 @@ int  Form::getGradeToExec() {return this->_gradeToExec;	}
 std::string Form::getName() {return this->_name;		}
 
 std::ostream& operator<<(std::ostream& out, Form Form) {
-	out <<  "Form name: " +  << ".";
+	out <<  "Form name: " << Form.getName() << "." 
+		<< "Grade to sign: " << Form.getGradeToSign()
+		<< "Grade to execute: " << Form.getGradeToExec()
+		<< "Is Grade signed: " << std::boolalpha << Form.getSigned();
 	return out;
 }
 
@@ -68,3 +69,5 @@ void Form::checkGrades(int value) {
 	else if (value > 150)
 		throw GradeTooLowException();
 }
+
+Form::~Form() {}

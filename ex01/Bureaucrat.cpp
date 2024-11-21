@@ -27,6 +27,15 @@ const char* Bureaucrat::GradeTooHighException::what() const noexcept {
 	return "Byro grade can't be this high.";
 }
 
+void Bureaucrat::signForm(Form& form) {
+	if (this->_grade <= form.getGradeToSign())
+		std::cout << this->_name << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->_name << " couldn't sign " << form.getName() << "because of politics bruh" << std::endl;
+}
+
+
+
 
 std::string Bureaucrat::getName() {
 	return this->_name;

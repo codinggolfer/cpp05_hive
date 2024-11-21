@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <exception>
+#include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
 private:
@@ -19,6 +21,7 @@ public:
 	int getGrade();
 	void increamentGrade();
 	void decrementGrade();
+	void signForm(Form&);
 
 
 //Exception classes	
