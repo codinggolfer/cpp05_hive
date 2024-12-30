@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eagbomei <eagbomei@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 16:03:42 by eagbomei          #+#    #+#             */
-/*   Updated: 2024/12/30 16:35:33 by eagbomei         ###   ########.fr       */
+/*   Created: 2024/12/30 16:53:23 by eagbomei          #+#    #+#             */
+/*   Updated: 2024/12/30 17:05:11 by eagbomei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-class Bureaucrat;
-
-class RobotomyRequestForm : public AForm
+class intern
 {
 private:
-	std::string target;
+	/* data */
 public:
-	RobotomyRequestForm();
-	RobotomyRequestForm(std::string);
-	RobotomyRequestForm(const RobotomyRequestForm& copy);
-	RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
-	
-	void robotomy(const Bureaucrat& target) const;
-	void execute(Bureaucrat const & executor) const;
-
-	void beSigned(const Bureaucrat&) override;
-
-	~RobotomyRequestForm();
+	intern();
+	intern (const intern& copy);
+	intern& operator=(const intern& other);
+	AForm* makeForm(std::string, std::string);
+	~intern();
 };
